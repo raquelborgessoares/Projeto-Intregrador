@@ -1,6 +1,9 @@
 /* ==========================================================
-   AQUASOL CEP — Interatividade do site
+   AQUASOL CEP — script.js (fica na MESMA pasta do index.html)
    ========================================================== */
+
+// Marca que o JS carregou (ativa animações de revelação)
+document.documentElement.classList.replace('no-js', 'js');
 
 const $  = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -32,8 +35,9 @@ const observador = new IntersectionObserver((entradas) => {
   entradas.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('visivel');
-    $$('.contador', e.target).concat(e.target.matches('.contador') ? [e.target] : [])
-      .forEach(animarContador);
+    const contadores = $$('.contador', e.target);
+    if (e.target.matches('.contador')) contadores.push(e.target);
+    contadores.forEach(animarContador);
     observador.unobserve(e.target);
   });
 }, { threshold: 0.18 });
@@ -56,7 +60,8 @@ function animarContador(el) {
 
 /* ---------- Cabeçalho: sombra ao rolar + menu mobile ---------- */
 const topo = $('#topo');
-window.addEventListener('scroll', () => topo.classList.toggle('rolou', window.scrollY > 12), { passive: true });
+window.addEventListener('scroll', () =>
+  topo.classList.toggle('rolou', window.scrollY > 12), { passive: true });
 
 const menuBtn = $('#menuBtn'), navLista = $('#navegacao');
 menuBtn.addEventListener('click', () => {
@@ -122,7 +127,7 @@ materiais.forEach((m, i) => {
   const b = document.createElement('button');
   b.className = 'amostra';
   b.style.background = m.cor;
-  b.setAttribute('aria-label', `Testar material: ${m.nome} — absorção ${m.abs}%`);
+  b.setAttribute('aria-label', 'Testar material: ' + m.nome + ' — absorção ' + m.abs + '%');
   b.setAttribute('aria-pressed', i === 0);
   b.addEventListener('click', () => {
     $$('.amostra').forEach(x => x.setAttribute('aria-pressed', 'false'));
@@ -184,7 +189,7 @@ function simular() {
   const energiaKwh = n * AREA_PLACA * h * IRR_POR_HORA * EFICIENCIA;
   const kcalDia = energiaKwh * KWH_KCAL;
   let dtDia = kcalDia / v;
-  if (capa.checked) dtDia *= 1.28; // capa térmica reduz perdas noturnas
+  if (capa.checked) dtDia *= 1.28;
 
   const dias = (META - T_INICIAL) / dtDia;
   const custoMes = energiaKwh * 30 * TARIFA;
@@ -197,4 +202,8 @@ function simular() {
   $('#rCo2').textContent = Math.round(co2Mes);
   $('#termoFill').style.height = Math.min(dtDia / 10, 1) * 100 + '%';
 }
-[qtdPlacas, horas
+[qtdPlacas, horasSol, volume, capa].forEach(el => el.addEventListener('input', simular));
+simular();
+
+/* ---------- Ano no rodapé ---------- */
+$('#ano').textContent = new Date().getFullYear();
