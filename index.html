@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Link de acessibilidade: pular direto para o conteúdo -->
   <a class="pular" href="#conteudo">Pular para o conteúdo principal</a>
-
-  <!-- Textura sutil de fundo -->
   <div class="ruido" aria-hidden="true"></div>
 
   <!-- ===================== CABEÇALHO ===================== -->
@@ -52,22 +49,20 @@
 
   <main id="conteudo">
 
-    <!-- ===================== ABERTURA: ESTAÇÃO DE AQUECIMENTO ===================== -->
+    <!-- ===================== ABERTURA ===================== -->
     <section class="hero" id="inicio" aria-labelledby="heroTitulo">
       <h2 class="sr-only">Visão geral do projeto</h2>
       <svg class="sol-fundo" aria-hidden="true" viewBox="0 0 400 400">
         <g stroke="currentColor" stroke-width="3" fill="none">
           <circle cx="200" cy="200" r="70"/>
-          <g id="raios">
-            <line x1="200" y1="60"  x2="200" y2="110"/>
-            <line x1="200" y1="290" x2="200" y2="340"/>
-            <line x1="60"  y1="200" x2="110" y2="200"/>
-            <line x1="290" y1="200" x2="340" y2="200"/>
-            <line x1="101" y1="101" x2="136" y2="136"/>
-            <line x1="264" y1="264" x2="299" y2="299"/>
-            <line x1="299" y1="101" x2="264" y2="136"/>
-            <line x1="136" y1="264" x2="101" y2="299"/>
-          </g>
+          <line x1="200" y1="60"  x2="200" y2="110"/>
+          <line x1="200" y1="290" x2="200" y2="340"/>
+          <line x1="60"  y1="200" x2="110" y2="200"/>
+          <line x1="290" y1="200" x2="340" y2="200"/>
+          <line x1="101" y1="101" x2="136" y2="136"/>
+          <line x1="264" y1="264" x2="299" y2="299"/>
+          <line x1="299" y1="101" x2="264" y2="136"/>
+          <line x1="136" y1="264" x2="101" y2="299"/>
         </g>
       </svg>
 
@@ -90,7 +85,6 @@
           </div>
         </div>
 
-        <!-- Painel de monitoramento (demonstração animada) -->
         <aside class="painel revelar" aria-label="Painel de monitoramento simulado da piscina">
           <header class="painel-cabeca">
             PAINEL · TEMPO REAL <span class="led" aria-hidden="true"></span>
@@ -114,7 +108,6 @@
         </aside>
       </div>
 
-      <!-- Ondas da piscina -->
       <div class="ondas" aria-hidden="true">
         <svg viewBox="0 0 2880 120" preserveAspectRatio="none">
           <path class="onda onda1" d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 C1680,110 1920,10 2160,60 C2400,110 2640,10 2880,60 L2880,120 L0,120 Z"/>
@@ -122,7 +115,6 @@
         </svg>
       </div>
 
-      <!-- Faixa de dados dos sensores -->
       <div class="ticker" aria-label="Leituras simuladas dos sensores do sistema">
         <div class="ticker-trilha">
           <span>TEMP. ÁGUA 28,4 °C</span><i>✦</i>
@@ -240,12 +232,11 @@
             <p>
               Ao atravessar o vidro e a água, a luz muda de velocidade e de
               direção (Lei de Snell). Esse desvio concentra energia dentro do
-              coletor e ajuda a explicar por que a radiação da manhã e do fim de
-              tarde é menos eficiente: o ângulo de incidência aumenta.
+              coletor e explica por que a radiação da manhã e do fim de tarde
+              é menos eficiente: o ângulo de incidência aumenta.
             </p>
           </article>
 
-          <!-- Disco de Newton interativo -->
           <article class="newton revelar" aria-labelledby="tituloNewton">
             <div class="newton-texto">
               <h3 id="tituloNewton">O Disco de Newton explica a placa negra</h3>
@@ -266,7 +257,6 @@
             </div>
           </article>
 
-          <!-- Laboratório de cores e absorção -->
           <article class="lab revelar" aria-labelledby="tituloLab">
             <h3 id="tituloLab">Laboratório: qual cor aquece mais?</h3>
             <p>Escolha um material e compare a absorção estimada de radiação solar:</p>
@@ -290,7 +280,7 @@
       </div>
     </section>
 
-    <!-- ===================== ROBÓTICA E PROGRAMAÇÃO ===================== -->
+    <!-- ===================== ROBÓTICA ===================== -->
     <section class="secao" id="robotica" aria-labelledby="tituloRobotica">
       <div class="container">
         <p class="etiqueta revelar">03 · ROBÓTICA & PROGRAMAÇÃO</p>
@@ -306,35 +296,28 @@
           <p class="ciclo-status" id="cicloStatus" aria-live="polite">Aguardando execução…</p>
         </div>
 
-        <!-- Diagrama do sistema -->
         <figure class="diagrama revelar">
           <svg viewBox="0 0 880 360" role="img"
                aria-label="Diagrama do sistema: o sol aquece o coletor solar; o sensor DS18B20 mede a temperatura; o ESP32 compara com a meta e aciona o relé da bomba, que leva água quente à piscina.">
             <title>Diagrama de automação do aquecimento solar da piscina</title>
 
-            <!-- tubos -->
             <path class="tubo" d="M235 108 V192 H330" fill="none"/>
             <path class="tubo" d="M480 192 H520 V96 H560" fill="none"/>
             <path class="tubo" d="M635 128 V226" fill="none"/>
             <path class="tubo" d="M710 226 H750" fill="none"/>
             <path class="tubo retorno" d="M750 330 H235 V172" fill="none"/>
-            <!-- fluxo animado -->
             <path class="fluxo" d="M235 108 V192 H330" fill="none"/>
             <path class="fluxo" d="M635 128 V226 H750" fill="none"/>
 
-            <!-- Sol -->
             <g id="nSol" class="node">
               <circle cx="70" cy="70" r="26"/>
-              <g class="raios-node">
-                <line x1="70" y1="28" x2="70" y2="38"/><line x1="70" y1="102" x2="70" y2="112"/>
-                <line x1="28" y1="70" x2="38" y2="70"/><line x1="102" y1="70" x2="112" y2="70"/>
-                <line x1="40" y1="40" x2="48" y2="48"/><line x1="92" y1="92" x2="100" y2="100"/>
-                <line x1="100" y1="40" x2="92" y2="48"/><line x1="48" y1="92" x2="40" y2="100"/>
-              </g>
+              <line x1="70" y1="28" x2="70" y2="38"/><line x1="70" y1="102" x2="70" y2="112"/>
+              <line x1="28" y1="70" x2="38" y2="70"/><line x1="102" y1="70" x2="112" y2="70"/>
+              <line x1="40" y1="40" x2="48" y2="48"/><line x1="92" y1="92" x2="100" y2="100"/>
+              <line x1="100" y1="40" x2="92" y2="48"/><line x1="48" y1="92" x2="40" y2="100"/>
               <text x="70" y="136" text-anchor="middle">SOL</text>
             </g>
 
-            <!-- Coletor -->
             <g id="nColetor" class="node">
               <rect x="150" y="44" width="170" height="64" rx="8"/>
               <line x1="170" y1="96" x2="200" y2="56"/><line x1="200" y1="96" x2="230" y2="56"/>
@@ -342,26 +325,22 @@
               <text x="235" y="128" text-anchor="middle">COLETOR · PLACA NEGRA</text>
             </g>
 
-            <!-- Sensor -->
             <g id="nSensor" class="node">
               <rect x="330" y="166" width="150" height="52" rx="8"/>
               <text x="405" y="197" text-anchor="middle">SENSOR DS18B20</text>
             </g>
 
-            <!-- Controlador -->
             <g id="nCtrl" class="node">
               <rect x="560" y="64" width="150" height="64" rx="8"/>
               <text x="635" y="92" text-anchor="middle">ESP32</text>
               <text x="635" y="110" text-anchor="middle" class="sub">(cérebro)</text>
             </g>
 
-            <!-- Relé + bomba -->
             <g id="nBomba" class="node">
               <rect x="560" y="200" width="150" height="52" rx="8"/>
               <text x="635" y="231" text-anchor="middle">RELÉ + BOMBA</text>
             </g>
 
-            <!-- Piscina -->
             <g id="nPiscina" class="node">
               <rect x="750" y="140" width="110" height="190" rx="12"/>
               <path d="M760 300 q13 -10 27 0 t27 0 t27 0" fill="none"/>
@@ -373,7 +352,6 @@
         </figure>
 
         <div class="robotica-grade">
-          <!-- Componentes -->
           <div class="componentes revelar">
             <h3>Componentes do sistema</h3>
             <ul role="list">
@@ -386,7 +364,6 @@
             </ul>
           </div>
 
-          <!-- Pseudocódigo -->
           <div class="codigo revelar">
             <h3>Pseudocódigo do controle</h3>
             <pre aria-label="Pseudocódigo do sistema de controle"><code><span class="c">// laço principal — repete para sempre</span>
@@ -465,7 +442,7 @@
       </div>
     </section>
 
-    <!-- ===================== IMPACTO & ETAPAS ===================== -->
+    <!-- ===================== IMPACTO ===================== -->
     <section class="secao" id="impacto" aria-labelledby="tituloImpacto">
       <div class="container">
         <p class="etiqueta revelar">05 · INOVAÇÃO & IMPACTO SOCIAL</p>
@@ -568,6 +545,6 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
