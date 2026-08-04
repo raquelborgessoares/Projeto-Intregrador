@@ -1,18 +1,17 @@
 /* ==========================================================
-   AQUASOL CEP — Folha de estilos
-   Paleta: água profunda + sol âmbar (contraste AA)
-   Fontes: Archivo Black (títulos) · Sora (texto) · IBM Plex Mono (dados)
+   AQUASOL CEP — style.css (fica na MESMA pasta do index.html)
    ========================================================== */
 
 :root{
-  --tinta:#062a33;        /* azul-petróleo profundo (texto)   */
+  --tinta:#062a33;
   --tinta-2:#0b3a46;
   --agua:#0e5566;
+  --agua-media:#4f97a4;
   --agua-clara:#bfe9e4;
-  --sol:#ffb325;          /* âmbar solar (destaques)          */
+  --sol:#ffb325;
   --sol-claro:#ffd684;
   --quente:#ff6b4a;
-  --papel:#f4f8f6;        /* fundo claro                      */
+  --papel:#f4f8f6;
   --branco:#ffffff;
   --linha:rgba(6,42,51,.16);
   --raio:10px;
@@ -22,21 +21,6 @@
   --fonte-mono:'IBM Plex Mono', ui-monospace, monospace;
 }
 
-/* ---------- Alto contraste (acionado por botão) ---------- */
-body.alto-contraste{
-  --tinta:#ffffff; --tinta-2:#ffffff; --agua:#000000;
-  --agua-clara:#ffffff; --sol:#ffd400; --sol-claro:#ffd400;
-  --quente:#ffd400; --papel:#000000; --branco:#000000;
-  --linha:#ffffff;
-}
-body.alto-contraste .fenomeno, body.alto-contraste .newton,
-body.alto-contraste .lab, body.alto-contraste .componentes,
-body.alto-contraste .codigo, body.alto-contraste .cartao-impacto,
-body.alto-contraste .stat, body.alto-contraste .painel{
-  background:#000; border-color:#fff;
-}
-body.alto-contraste a{ text-decoration:underline; }
-
 /* ---------- Base ---------- */
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
@@ -45,7 +29,6 @@ body{
   background:var(--papel);
   color:var(--tinta);
   line-height:1.65;
-  font-size:1rem;
   overflow-x:hidden;
 }
 img,svg{ max-width:100%; display:block; }
@@ -53,14 +36,8 @@ section{ scroll-margin-top:92px; }
 .container{ width:min(1140px, 92%); margin-inline:auto; }
 .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
-/* Foco visível — acessibilidade por teclado */
-:focus-visible{
-  outline:3px solid var(--sol);
-  outline-offset:3px;
-  border-radius:4px;
-}
+:focus-visible{ outline:3px solid var(--sol); outline-offset:3px; border-radius:4px; }
 
-/* Link para pular ao conteúdo */
 .pular{
   position:absolute; left:-999px; top:0; z-index:200;
   background:var(--sol); color:var(--tinta);
@@ -69,13 +46,12 @@ section{ scroll-margin-top:92px; }
 }
 .pular:focus{ left:0; }
 
-/* Textura de ruído sutil */
 .ruido{
   position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.045;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------- Tipografia de seção ---------- */
+/* ---------- Tipografia ---------- */
 .etiqueta{
   font-family:var(--fonte-mono); font-size:.78rem; font-weight:600;
   letter-spacing:.22em; color:var(--agua); margin-bottom:.9rem;
@@ -87,17 +63,17 @@ section{ scroll-margin-top:92px; }
   line-height:1.15; margin-bottom:1.4rem;
   overflow:hidden;
 }
-.titulo span{ display:inline-block; transform:translateY(115%); transition:transform .8s cubic-bezier(.2,.7,.2,1); }
-.titulo.visivel span, .visivel.titulo span{ transform:translateY(0); }
+.titulo span{ display:inline-block; }
+html.js .titulo span{ transform:translateY(115%); transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+.titulo.visivel span{ transform:translateY(0); }
 .secao{ padding:96px 0; position:relative; z-index:2; }
 .secao-alt{ background:linear-gradient(180deg, var(--agua-clara) 0%, var(--papel) 100%); }
-body.alto-contraste .secao-alt{ background:#000; }
 .secao-intro{ max-width:64ch; margin-bottom:2rem; }
 
 /* ---------- Cabeçalho ---------- */
 .topo{
   position:sticky; top:0; z-index:100;
-  background:color-mix(in srgb, var(--papel) 88%, transparent);
+  background:rgba(244,248,246,.92);
   backdrop-filter:blur(8px);
   border-bottom:1.5px solid var(--linha);
   transition:box-shadow .3s;
@@ -111,7 +87,7 @@ body.alto-contraste .secao-alt{ background:#000; }
 .marca span, .rodape-marca span{ color:var(--sol); }
 .marca-sol{
   width:14px; height:14px; border-radius:50%;
-  background:var(--sol); box-shadow:0 0 0 4px color-mix(in srgb, var(--sol) 30%, transparent);
+  background:var(--sol); box-shadow:0 0 0 4px rgba(255,179,37,.3);
 }
 .nav-lista{ display:flex; gap:.2rem; list-style:none; margin-inline:auto; }
 .nav-lista a{
@@ -149,7 +125,7 @@ body.alto-contraste .secao-alt{ background:#000; }
 .hero{
   position:relative; padding:72px 0 150px; overflow:hidden;
   background:
-    radial-gradient(ellipse at 85% -10%, color-mix(in srgb, var(--sol) 22%, transparent), transparent 55%),
+    radial-gradient(ellipse at 85% -10%, rgba(255,179,37,.25), transparent 55%),
     var(--papel);
 }
 .sol-fundo{
@@ -172,13 +148,12 @@ body.alto-contraste .secao-alt{ background:#000; }
 .hero-sub{ max-width:52ch; font-size:1.05rem; margin-bottom:1.8rem; }
 .hero-acoes{ display:flex; gap:.9rem; flex-wrap:wrap; }
 
-/* Painel de monitoramento */
+/* Painel */
 .painel{
   background:var(--tinta); color:var(--agua-clara);
   border-radius:var(--raio); border:2px solid var(--tinta-2);
   box-shadow:var(--sombra); overflow:hidden;
-  font-family:var(--fonte-mono);
-  transform:rotate(.6deg);
+  font-family:var(--fonte-mono); transform:rotate(.6deg);
 }
 .painel-cabeca{
   display:flex; justify-content:space-between; align-items:center;
@@ -209,11 +184,10 @@ body.alto-contraste .secao-alt{ background:#000; }
 /* Ondas */
 .ondas{ position:absolute; bottom:38px; left:0; right:0; z-index:1; line-height:0; }
 .ondas svg{ width:200%; height:70px; }
-.onda{ fill:var(--agua); }
-.onda2{ fill:color-mix(in srgb, var(--agua) 55%, var(--agua-clara)); animation:deslizar 14s linear infinite; }
-.onda1{ animation:deslizar 9s linear infinite reverse; opacity:.85; }
+.onda1{ fill:var(--agua); animation:deslizar 9s linear infinite reverse; opacity:.85; }
+.onda2{ fill:var(--agua-media); animation:deslizar 14s linear infinite; }
 
-/* Faixa de dados (ticker) */
+/* Ticker */
 .ticker{
   position:relative; z-index:3; background:var(--tinta); color:var(--sol-claro);
   font-family:var(--fonte-mono); font-size:.74rem; letter-spacing:.14em;
@@ -222,7 +196,7 @@ body.alto-contraste .secao-alt{ background:#000; }
 .ticker-trilha{ display:flex; gap:1.6rem; width:max-content; animation:ticker 30s linear infinite; }
 .ticker i{ color:var(--sol); font-style:normal; }
 
-/* ---------- Desafio / Estatísticas ---------- */
+/* ---------- Desafio ---------- */
 .desafio-grade{ display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
 .desafio-texto p{ margin-bottom:1rem; max-width:56ch; }
 .stats{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
@@ -242,9 +216,9 @@ body.alto-contraste .secao-alt{ background:#000; }
 .optica-fixa{ position:sticky; top:100px; }
 .optica-fixa p{ margin-bottom:1.1rem; max-width:46ch; }
 .nota-lateral{
-  border-left:4px solid var(--sol); padding-left:1rem;
-  font-size:.92rem; background:color-mix(in srgb, var(--sol) 12%, transparent);
-  border-radius:0 8px 8px 0; padding-block:.8rem;
+  border-left:4px solid var(--sol); padding:0.8rem 1rem;
+  font-size:.92rem; background:rgba(255,179,37,.14);
+  border-radius:0 8px 8px 0;
 }
 .optica-cards{ display:grid; gap:1.2rem; }
 .fenomeno,.newton,.lab{
@@ -273,18 +247,20 @@ body.alto-contraste .secao-alt{ background:#000; }
 }
 .newton-nota{ font-size:.82rem; opacity:.8; margin-top:.7rem; font-style:italic; }
 
-/* Laboratório de absorção */
+/* Laboratório */
 .amostras{ display:flex; gap:.7rem; flex-wrap:wrap; margin:1rem 0 1.3rem; }
 .amostra{
   width:52px; height:52px; border-radius:50%; cursor:pointer;
-  border:3px solid var(--linha); position:relative;
-  transition:transform .25s, border-color .25s;
+  border:3px solid var(--linha); transition:transform .25s, border-color .25s;
 }
 .amostra:hover{ transform:scale(1.12); }
-.amostra[aria-pressed="true"]{ border-color:var(--tinta); box-shadow:0 0 0 4px color-mix(in srgb, var(--sol) 45%, transparent); }
+.amostra[aria-pressed="true"]{
+  border-color:var(--tinta);
+  box-shadow:0 0 0 4px rgba(255,179,37,.5);
+}
 .medidor{ margin-bottom:.9rem; }
 .med-rot{ font-family:var(--fonte-mono); font-size:.8rem; display:flex; justify-content:space-between; margin-bottom:.3rem; }
-.med-trilho{ height:14px; background:color-mix(in srgb, var(--tinta) 8%, transparent); border-radius:99px; overflow:hidden; }
+.med-trilho{ height:14px; background:rgba(6,42,51,.1); border-radius:99px; overflow:hidden; }
 .med-fill{ height:100%; border-radius:99px; transition:width .8s cubic-bezier(.2,.7,.2,1); }
 .med-fill.abs{ background:linear-gradient(90deg, var(--quente), var(--sol)); }
 .med-fill.ref{ background:linear-gradient(90deg, var(--agua), var(--agua-clara)); }
@@ -303,7 +279,7 @@ body.alto-contraste .secao-alt{ background:#000; }
 .diagrama text.sub{ font-size:10px; opacity:.7; }
 .node rect,.node circle{ fill:var(--papel); stroke:var(--tinta); stroke-width:2.5; transition:.35s; }
 .node line,.node path{ stroke:var(--tinta); stroke-width:2.5; fill:none; }
-.node circle{ fill:var(--sol); }
+.node > circle{ fill:var(--sol); }
 .node.ativo rect{ fill:#fff3d6; stroke:var(--sol); stroke-width:3.5; }
 .node.ativo circle{ stroke:var(--quente); stroke-width:4; }
 .tubo{ stroke:var(--linha); stroke-width:6; stroke-linecap:round; }
@@ -369,13 +345,10 @@ body.alto-contraste .secao-alt{ background:#000; }
 .sim-nota{ grid-column:1/-1; font-size:.72rem; opacity:.7; }
 
 /* ---------- Impacto ---------- */
-.etapas{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem;
-  list-style:none; margin:2rem 0 3rem; counter-reset:fase;
-}
+.etapas{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; list-style:none; margin:2rem 0 3rem; }
 .etapa{
   background:var(--branco); border:1.5px solid var(--linha); border-radius:var(--raio);
-  padding:1.4rem 1.3rem; position:relative; transition:transform .3s, box-shadow .3s;
+  padding:1.4rem 1.3rem; transition:transform .3s, box-shadow .3s;
 }
 .etapa:hover{ transform:translateY(-8px); box-shadow:var(--sombra); }
 .etapa-num{
@@ -431,18 +404,65 @@ kbd{
 .rodape-base a{ color:var(--sol); text-decoration:none; }
 .rodape-base a:hover{ text-decoration:underline; }
 
-/* ---------- Animações de revelação ---------- */
-.revelar{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
-.revelar.visivel{ opacity:1; transform:none; }
+/* ---------- Revelação ao rolar (só com JS ativo) ---------- */
+html.js .revelar{
+  opacity:0; transform:translateY(26px);
+  transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+html.js .revelar.visivel{ opacity:1; transform:none; }
 
-/* ---------- Keyframes ---------- */
+/* ---------- Alto contraste ---------- */
+body.alto-contraste{
+  --papel:#000; --branco:#000; --tinta:#fff; --tinta-2:#000;
+  --agua:#fff; --agua-media:#fff; --agua-clara:#fff;
+  --sol:#ffd400; --sol-claro:#ffd400; --quente:#ffd400; --linha:#fff;
+  background:#000; color:#fff;
+}
+body.alto-contraste .topo,
+body.alto-contraste .secao-alt,
+body.alto-contraste .secao-escura,
+body.alto-contraste .painel,
+body.alto-contraste .painel-cabeca,
+body.alto-contraste .fenomeno,
+body.alto-contraste .newton,
+body.alto-contraste .lab,
+body.alto-contraste .stat,
+body.alto-contraste .componentes,
+body.alto-contraste .codigo,
+body.alto-contraste .diagrama,
+body.alto-contraste .sim-controles,
+body.alto-contraste .sim-resultado,
+body.alto-contraste .cartao-impacto,
+body.alto-contraste .etapa{ background:#000; }
+body.alto-contraste .painel-cabeca{ color:#ffd400; }
+body.alto-contraste .valor-grande{ color:#ffd400; }
+body.alto-contraste .leituras dd,
+body.alto-contraste .cartao-impacto h3,
+body.alto-contraste .rodape-marca,
+body.alto-contraste .secao-escura .titulo,
+body.alto-contraste .sim-controles label{ color:#fff; }
+body.alto-contraste .btn-cheio,
+body.alto-contraste .pular,
+body.alto-contraste .checklist li::before{ color:#000; }
+body.alto-contraste .btn-contorno:hover,
+body.alto-contraste .nav-lista a:hover,
+body.alto-contraste .ferramentas button:hover{ background:#fff; color:#000; }
+body.alto-contraste kbd{ background:#000; color:#ffd400; border:1px solid #fff; }
+body.alto-contraste .codigo pre{ background:#000; color:#fff; border:1px solid #fff; }
+body.alto-contraste .codigo .c{ color:#aaa; }
+body.alto-contraste .termo-tubo{ background:#000; }
+body.alto-contraste .med-trilho{ background:#000; border:1px solid #fff; }
+body.alto-contraste .nota-lateral{ background:#000; border-color:#ffd400; }
+body.alto-contraste a{ text-decoration:underline; }
+
+/* ---------- Animações ---------- */
 @keyframes girar{ to{ transform:rotate(360deg); } }
 @keyframes piscar{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
 @keyframes deslizar{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @keyframes ticker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 @keyframes fluir{ to{ stroke-dashoffset:-60; } }
 
-/* ---------- Responsividade ---------- */
+/* ---------- Responsivo ---------- */
 @media (max-width: 980px){
   .hero-grade,.optica-grade,.desafio-grade,.robotica-grade,
   .sim-grade,.acess-grade,.newton{ grid-template-columns:1fr; }
@@ -470,7 +490,7 @@ kbd{
   .secao{ padding:64px 0; }
 }
 
-/* ---------- Movimento reduzido (acessibilidade) ---------- */
+/* ---------- Movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   *,*::before,*::after{
@@ -478,6 +498,6 @@ kbd{
     animation-iteration-count:1 !important;
     transition-duration:.001ms !important;
   }
-  .revelar{ opacity:1; transform:none; }
-  .titulo span{ transform:none; }
+  html.js .revelar{ opacity:1; transform:none; }
+  html.js .titulo span{ transform:none; }
 }
